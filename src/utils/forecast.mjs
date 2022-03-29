@@ -5,7 +5,8 @@ const forecast = (latitude, longitude, callback) => {
 
     request({ url: weatherstackURL, json: true }, (error, {
         body: { error: serviceError },
-        body: { current: { temperature, feelslike } = {} }
+        body: { location },
+        body: { current: { weather_icons, weather_descriptions, temperature, feelslike } = {} }
     }) => {
         if (error) {
             callback('Could not connect to weather service', undefined)
@@ -14,12 +15,13 @@ const forecast = (latitude, longitude, callback) => {
             callback('Invalid request to weather service', undefined)
         }
         else {
-            if (temperature === feelslike) {
-                callback(undefined, 'It is currently ' + temperature + ' degrees out and also feels like it.')
-            }
-            else {
-                callback(undefined, 'It is currently ' + temperature + ' degrees out, but it feels like it is ' + feelslike + ' degrees.')
-            }
+            callback(undefined, {
+                location: location.name + ", " + location.region + ", " + location.country,
+                weather_icons,
+                weather_descriptions,
+                temperature,
+                feelslike
+            })
         }
     })
 }

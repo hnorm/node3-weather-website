@@ -2,6 +2,7 @@ const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
 const messageOne = document.querySelector('#message-1')
 const messageTwo = document.querySelector('#message-2')
+const weatherIcon = document.querySelector('#weather-icon')
 
 weatherForm.addEventListener('submit', e => {
     e.preventDefault()
@@ -11,16 +12,18 @@ weatherForm.addEventListener('submit', e => {
     }
 
     messageOne.textContent = "Fetching weather forecast..."
+    weatherIcon.src = ""
     messageTwo.textContent = ""
-    
+
     fetch('/weather?address=' + search.value).then(response => {
-        response.json().then(({error, location, forecast}) => {
+        response.json().then(({ error, location, weather_icons, weather_descriptions, temperature, feelslike }) => {
             if (error) {
                 messageOne.textContent = error
             }
             else {
                 messageOne.textContent = location
-                messageTwo.textContent = forecast
+                weatherIcon.src = weather_icons
+                messageTwo.textContent = weather_descriptions[0] + ", " + temperature + " degrees out, feels like " + feelslike + " degrees."
             }
         })
     })

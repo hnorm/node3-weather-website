@@ -40,6 +40,10 @@ header a {
     width: 250px;
 }
 
+.weather-icon {
+    width: 64px;
+}
+
 input {
     border: 1px solid #cccccc;
     padding: 8px;
