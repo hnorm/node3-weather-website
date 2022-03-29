@@ -4,6 +4,8 @@ import forecast from './utils/forecast.mjs'
 import geocode from './utils/geocode.mjs'
 
 const app = express()
+const port = process.env.PORT || 3000
+
 app.set('view engine', 'hbs')
 app.set('views', 'templates/views')
 app.use(express.static('public'))
@@ -39,7 +41,7 @@ app.get('/weather', (req, res) => {
         })
     }
 
-    geocode(req.query.address, (error, {latitude, longitude, location} = {}) => {
+    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
             return res.send({ error })
         }
@@ -74,6 +76,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
