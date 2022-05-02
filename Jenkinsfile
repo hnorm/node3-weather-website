@@ -9,13 +9,9 @@ pipeline {
             }
         }
         stage('Test') {
-            agent {
-                docker {
-                    args 'npm run test'
-                }
-            }
             steps {
                 echo 'Testing..'
+                sh 'npm run test'
             }
         }
         stage('Deploy') {
