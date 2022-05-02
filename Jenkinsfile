@@ -8,7 +8,6 @@ pipeline {
                 echo 'Building..'
                 echo "I'm executing in node: ${env.NODE_NAME}"
                 sh 'node --version'
-                sh 'npm list'
             }
         }
         stage('Test') {
