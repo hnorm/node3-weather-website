@@ -12,10 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "express": "^4.17.3",
     "hbs": "^4.2.0",
-    "postman-request": "^2.88.1-postman.31",
-    "env-cmd": "^10.1.0"
+    "postman-request": "^2.88.1-postman.31"
   },
   "devDependencies": {
     "jest": "^28.0.3",

@@ -8,6 +8,8 @@ pipeline {
                 echo 'Building..'
                 echo "I'm executing in node: ${env.NODE_NAME}"
                 sh 'node --version'
+                sh 'npm -v'
+                sj 'npm install -g npm@latest'
             }
         }
         stage('Test') {
@@ -15,6 +17,7 @@ pipeline {
                 echo 'Testing..'
                 echo "I'm executing in node: ${env.NODE_NAME}"
                 sh 'node --version'
+                sh 'npm -v'
                 sh 'npm install'
                 sh 'npm list'
                 sh 'npm run test'
