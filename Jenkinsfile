@@ -12,9 +12,7 @@ pipeline {
         }
         stage('Test') {
             agent {
-                docker {
-                    'node:18'
-                }
+                docker 'node:18'
             }
             steps {
                 echo 'Testing..'
