@@ -1,32 +1,30 @@
 pipeline {
-    agent none
+    agent {
+        dockerfile true
+    }
     stages {
         stage('Build') {
-            agent {
-                dockerfile true
-            }
             steps {
                 echo 'Building..'
+                echo "I'm executing in node: ${env.NODE_NAME}"
                 sh 'node --version'
+                sh 'npm list'
             }
         }
         stage('Test') {
-            agent {
-                dockerfile {
-                    args 'npm install'
-                }
-            }
             steps {
                 echo 'Testing..'
+                echo "I'm executing in node: ${env.NODE_NAME}"
                 sh 'node --version'
+                sh 'npm install'
                 sh 'npm list'
                 sh 'npm run test'
             }
         }
         stage('Deploy') {
-            agent any
             steps {
                 echo 'Deploying....'
+                echo "I'm executing in node: ${env.NODE_NAME}"
             }
         }
     }
