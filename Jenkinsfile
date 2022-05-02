@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             agent {
                 dockerfile {
-                    args'npm install'
+                    args 'npm install'
                 }
             }
             steps {
