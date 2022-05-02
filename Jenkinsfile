@@ -12,12 +12,13 @@ pipeline {
         }
         stage('Test') {
             agent {
-                docker 'node:18'
+                dockerfile {
+                    args'npm install'
+                }
             }
             steps {
                 echo 'Testing..'
                 sh 'node --version'
-                sh 'npm install'
                 sh 'npm list'
                 sh 'npm run test'
             }
