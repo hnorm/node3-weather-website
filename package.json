@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.mjs",
-    "dev": "nodemon src/app.mjs -e js,hbs"
+    "start": "env-cmd -f ./config/dev.env node src/app.mjs",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/app.mjs -e js,hbs",
+    "test": "env-cmd -f ./config/test.env node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,9 @@
     "postman-request": "^2.88.1-postman.31"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "env-cmd": "^10.1.0",
+    "jest": "^28.0.3",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.3"
   }
 }

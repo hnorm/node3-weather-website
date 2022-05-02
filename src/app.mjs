@@ -4,7 +4,7 @@ import forecast from './utils/forecast.mjs'
 import geocode from './utils/geocode.mjs'
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 app.set('view engine', 'hbs')
 app.set('views', 'templates/views')

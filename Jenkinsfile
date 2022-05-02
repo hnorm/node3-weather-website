@@ -9,6 +9,11 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    args 'npm run test'
+                }
+            }
             steps {
                 echo 'Testing..'
             }
