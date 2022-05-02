@@ -1,8 +1,9 @@
 pipeline {
+    agent none
     stages {
         stage('Build') {
             agent {
-                dockerfile
+                dockerfile true
             }
             steps {
                 echo 'Building..'
@@ -11,7 +12,9 @@ pipeline {
         }
         stage('Test') {
             agent {
-                node:18
+                docker {
+                    'node:18'
+                }
             }
             steps {
                 echo 'Testing..'
@@ -22,6 +25,7 @@ pipeline {
             }
         }
         stage('Deploy') {
+            agent any
             steps {
                 echo 'Deploying....'
             }
